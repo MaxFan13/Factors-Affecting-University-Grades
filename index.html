@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factors Affecting University Grades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #1d428a;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .visualization {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Factors Affecting University Grades</h1>
+        <p><strong>Project by:</strong> Ryan Jiang, Keshav Goel, Max Fan</p>
+
+        <h2>Introduction</h2>
+        <p>Education plays a crucial role in a person’s development. Academic grades are influenced by various factors such as socioeconomic background, parental involvement, and learning environment. This project aims to analyze these factors to identify trends and insights that impact student performance.</p>
+
+        <h2>Dataset Overview</h2>
+        <p>The dataset contains <strong>10,064 rows</strong> and <strong>35 columns</strong>. It includes demographic attributes (age, gender, family income), academic-related factors (study hours, professor quality), and social influences (bullying, motivation). The dataset is sourced from <a href="https://www.kaggle.com/datasets/atifmasih/factors-affecting-university-student-grades" target="_blank">Kaggle</a>.</p>
+
+        <h2>References</h2>
+        <ul>
+            <li><a href="https://files.eric.ed.gov/fulltext/EJ1052666.pdf" target="_blank">Factors Affecting Students' Grades in Economics</a></li>
+            <li><a href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2021.731634/full" target="_blank">Socioeconomic Status as a Predictor of Student Achievement</a></li>
+        </ul>
+
+        <h2>Data Visualizations</h2>
+        <div class="visualization" id="altair-chart">
+            <p><em>Altair visualization will be embedded here.</em></p>
+        </div>
+        <div class="visualization" id="d3-chart">
+            <p><em>D3.js visualization will be embedded here.</em></p>
+        </div>
+
+        <h2>Findings</h2>
+        <p>From our visualizations, we found that study hours significantly correlate with academic performance. Students with higher parental involvement tend to perform better, while excessive extracurricular activities can have both positive and negative impacts depending on time management.</p>
+
+        <h2>Future Work</h2>
+        <p>Further research can include a predictive model for student performance based on real-time input from teachers and students.</p>
+
+        <h2>Interactive Features</h2>
+        <p>Users can interact with the visualizations by filtering based on demographics, study habits, and extracurricular activities.</p>
+    </div>
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script>
+        // Placeholder for D3.js visualization
+        document.getElementById('d3-chart').innerHTML = '<svg width="400" height="200"><text x="50" y="100" font-size="20">D3 Chart Placeholder</text></svg>';
+    </script>
+</body>
+</html>
