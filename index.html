@@ -27,9 +27,7 @@
         <div class="visualization" id="altair-chart">
             <p><em>Altair visualization will be embedded here.</em></p>
         </div>
-        <div class="visualization" id="d3-chart">
-            <p><em>D3.js visualization will be embedded here.</em></p>
-        </div>
+        <div class="visualization" id="d3-chart"></div>
 
         <h2>Findings</h2>
         <p>From our visualizations, we found that study hours significantly correlate with academic performance. Students with higher parental involvement tend to perform better, while excessive extracurricular activities can have both positive and negative impacts depending on time management.</p>
@@ -43,8 +41,77 @@
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script>
-        // Placeholder for D3.js visualization
-        document.getElementById('d3-chart').innerHTML = '<svg width="400" height="200"><text x="50" y="100" font-size="20">D3 Chart Placeholder</text></svg>';
+        const data = [
+            { activity: 'High', grade: 'A', count: 110 },
+            { activity: 'High', grade: 'B', count: 95 },
+            { activity: 'Medium', grade: 'A', count: 80 },
+            { activity: 'Medium', grade: 'B', count: 100 },
+            { activity: 'Low', grade: 'C', count: 85 },
+            { activity: 'Low', grade: 'D', count: 40 },
+            { activity: 'None', grade: 'F', count: 20 }
+        ];
+
+        const margin = {top: 30, right: 30, bottom: 50, left: 40},
+              width = 600 - margin.left - margin.right,
+              height = 400 - margin.top - margin.bottom;
+
+        const svg = d3.select("#d3-chart").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        const x0 = d3.scaleBand()
+            .domain([...new Set(data.map(d => d.activity))])
+            .range([0, width])
+            .paddingInner(0.2);
+
+        const x1 = d3.scaleBand()
+            .domain([...new Set(data.map(d => d.grade))])
+            .range([0, x0.bandwidth()])
+            .padding(0.05);
+
+        const y = d3.scaleLinear()
+            .domain([0, d3.max(data, d => d.count)]).nice()
+            .range([height, 0]);
+
+        const color = d3.scaleOrdinal()
+            .domain([...new Set(data.map(d => d.grade))])
+            .range(d3.schemeSet2);
+
+        svg.append("g")
+          .selectAll("g")
+          .data(d3.group(data, d => d.activity))
+          .join("g")
+            .attr("transform", d => `translate(${x0(d[0])},0)`)
+          .selectAll("rect")
+          .data(d => d[1])
+          .join("rect")
+            .attr("x", d => x1(d.grade))
+            .attr("y", d => y(d.count))
+            .attr("width", x1.bandwidth())
+            .attr("height", d => height - y(d.count))
+            .attr("fill", d => color(d.grade))
+            .append("title")
+            .text(d => `Grade: ${d.grade}, Count: ${d.count}`);
+
+        svg.append("g").call(d3.axisLeft(y));
+        svg.append("g")
+            .attr("transform", `translate(0,${height})`)
+            .call(d3.axisBottom(x0));
+
+        svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", height + 40)
+            .attr("text-anchor", "middle")
+            .text("Extracurricular Activity Level");
+
+        svg.append("text")
+            .attr("x", -height / 2)
+            .attr("y", -30)
+            .attr("transform", "rotate(-90)")
+            .attr("text-anchor", "middle")
+            .text("Number of Students");
     </script>
 </body>
 </html>
