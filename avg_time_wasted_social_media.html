@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}, "axis": {"labelFontSize": 12, "titleFontSize": 14}, "title": {"fontSize": 16}}, "layer": [{"mark": {"type": "bar", "size": 40}, "encoding": {"color": {"field": "Grades", "scale": {"domain": ["A", "B", "C"], "range": ["#4CAF50", "#FFC107", "#F44336"]}, "type": "nominal"}, "tooltip": [{"field": "Grades", "type": "nominal"}, {"field": "Time_Wasted_on_Social_Media", "format": ".2f", "title": "Avg Time Wasted", "type": "quantitative"}], "x": {"field": "Grades", "sort": ["A", "B", "C"], "title": "Grade", "type": "nominal"}, "y": {"field": "Time_Wasted_on_Social_Media", "title": "Avg Time Wasted on Social Media (hrs)", "type": "quantitative"}}, "title": "Average Time Wasted on Social Media by Grade"}, {"mark": {"type": "text", "align": "center", "baseline": "bottom", "dy": -5}, "encoding": {"color": {"field": "Grades", "scale": {"domain": ["A", "B", "C"], "range": ["#4CAF50", "#FFC107", "#F44336"]}, "type": "nominal"}, "text": {"field": "Time_Wasted_on_Social_Media", "format": ".2f", "type": "quantitative"}, "tooltip": [{"field": "Grades", "type": "nominal"}, {"field": "Time_Wasted_on_Social_Media", "format": ".2f", "title": "Avg Time Wasted", "type": "quantitative"}], "x": {"field": "Grades", "sort": ["A", "B", "C"], "title": "Grade", "type": "nominal"}, "y": {"field": "Time_Wasted_on_Social_Media", "title": "Avg Time Wasted on Social Media (hrs)", "type": "quantitative"}}, "title": "Average Time Wasted on Social Media by Grade"}], "data": {"name": "data-234179af5a1e6f3c7512d13dc39e52e8"}, "height": 300, "width": 400, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-234179af5a1e6f3c7512d13dc39e52e8": [{"Grades": "A", "Time_Wasted_on_Social_Media": 3.445890277155039}, {"Grades": "B", "Time_Wasted_on_Social_Media": 3.4823046467797183}, {"Grades": "C", "Time_Wasted_on_Social_Media": 3.5418115432259274}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
