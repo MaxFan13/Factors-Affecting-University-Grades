@@ -42,22 +42,36 @@
         
 
 <!-- Start of the vizualisations-->
+<h3>Figure 1: Average Time Wasted on Social Media by Grade</h3>
 <div class="visualization" id="altair-chart">
   <iframe src="avg_time_wasted_social_media.html" width="100%" height="400" frameborder="0"></iframe>
 </div>
 
     <p>
-        This boxplot shows that while both genders have overlapping distributions, females tend to have slightly higher median grades. This insight can help highlight potential structural or behavioral differences across gender lines.
+    This is a bar chart that was made with Altair that shows the average time wasted on social media for
+     students that received each letter grade (A, B, C). Although the difference is small, the data 
+     reveals a slight trend that the time wasted on social media increases with lower letter grades, 
+     with A students having an average of 3.45 hours wasted, while C students having an average of 3.54
+      hours wasted.  This suggests a potential correlation between increased social media usage and
+    lower academic performance, though further analysis would be needed to confirm causation.
     </p>
 
+ <h3>Figure 2: Percentage of Students Participating in Academic Support Activities</h3>
 <div class="visualization" id="interactive_bar_chart">
     <iframe src="interactive_bar_chart.html" width="100%" height="500" frameborder="0"></iframe>
     </div>
         <p>
-            Students with higher levels of motivation and self-esteem tend to achieve higher grades. This emphasizes the psychological side of academic performance, which is often underappreciated.
+        This interactive bar chart shows the percentage of students who reported participating in various
+        academic support activities (mentoring, tutoring, educational resources, extracurricular 
+        activities), with functionality to sort by grade level and view precise percentages on hover. 
+        The narrow range of percentages, from 54% to 56%, suggests that these factors all contribute 
+        similarly to academic success, but Mentoring appears to be a positive influence on grades, with
+         the percentage of “Yes” responses decreasing as grades get lower. Interestingly, tutoring peaks
+          among B students (55.2%), which may reflect their proactive efforts to improve to an A grade, 
+          while A students might need less tutoring and C students might utilize it less effectively.
         </p>
 
-        
+<h3>Figure 3: Distribution of Student Grades by School Type and Major</h3>        
 <div class="visualization" id="plotly-chart">
   <iframe src="sunburst.html" width="100%" height="500" frameborder="0"></iframe>
 </div>
@@ -66,13 +80,14 @@
     This scatter plot shows a general upward trend: more study hours tend to correlate with better grades. However, the correlation varies across majors, suggesting the need for tailored academic support by field of study.
 </p>
 
-
+<h3>Figure 4: </h3>  
 <div class="visualization" id="d3-chart"></div>
 
 <p>
     The grouped bar chart demonstrates how students with more involvement in extracurricular activities tend to earn higher grades. However, moderate activity often yields the best balance, while too little or none is associated with lower academic performance.
 </p>
-        
+
+<h3>Figure 5: Correlation Heatmap of Academic Factors</h3>
 <div class="visualization" id="heatmap-chart">
   <img src="correlation.png" alt="Correlation Heatmap" width="100%">
 </div>
