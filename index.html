@@ -10,12 +10,11 @@
 <body>
     <div class="container">
         <h1>Factors Affecting University Grades</h1>
-        <p><strong>Project by:</strong> Ryan Jiang, Keshav Goel, Max Fan
-        ** Add titles for visualizations with figure numbers</p>
+        <p><strong>Project by:</strong> Ryan Jiang, Keshav Goel, Max Fan</p>
 
         <h2>Introduction</h2>
         <p>Education plays a crucial role in a person’s development. One clear metric of a student’s academic
-            journey is their grades.Academic grades are influenced by various factors such as 
+            journey is their grades. Academic grades are influenced by various factors such as 
             socioeconomic background, parental involvement, and learning environment. This project aims
              to analyze these factors to identify trends and insights that impact student performance. 
              Exploring these interconnected factors is crucial because it highlights the challenges and opportunities within the education system. 
@@ -30,7 +29,7 @@
          student’s grades, measured on a letter scale. Other features in the dataset include study hours,
           professor quality, tutoring, and bullying, all of which may play a role in academic performance.
         This dataset is valuable for analyzing the key factors that influence student performance, helping 
-        to identify areas where students may need additional support to improve their learning strategies</p>
+        to identify areas where students may need additional support to improve their learning strategies.</p>
 
         <h2>References</h2>
         <ul>
@@ -42,22 +41,36 @@
         
 
 <!-- Start of the vizualisations-->
+<h3>Figure 1: Average Time Wasted on Social Media by Grade</h3>
 <div class="visualization" id="altair-chart">
   <iframe src="avg_time_wasted_social_media.html" width="100%" height="400" frameborder="0"></iframe>
 </div>
 
     <p>
-        This boxplot shows that while both genders have overlapping distributions, females tend to have slightly higher median grades. This insight can help highlight potential structural or behavioral differences across gender lines.
+    This is a bar chart that was made with Altair that shows the average time wasted on social media for
+     students that received each letter grade (A, B, C). Although the difference is small, the data 
+     reveals a slight trend that the time wasted on social media increases with lower letter grades, 
+     with A students having an average of 3.45 hours wasted, while C students having an average of 3.54
+      hours wasted.  This suggests a potential correlation between increased social media usage and
+    lower academic performance, though further analysis would be needed to confirm causation.
     </p>
 
+ <h3>Figure 2: Percentage of Students Participating in Academic Support Activities</h3>
 <div class="visualization" id="interactive_bar_chart">
     <iframe src="interactive_bar_chart.html" width="100%" height="500" frameborder="0"></iframe>
     </div>
         <p>
-            Students with higher levels of motivation and self-esteem tend to achieve higher grades. This emphasizes the psychological side of academic performance, which is often underappreciated.
+        This interactive bar chart shows the percentage of students who reported participating in various
+        academic support activities (mentoring, tutoring, educational resources, extracurricular 
+        activities), with functionality to sort by grade level and view precise percentages on hover. 
+        The narrow range of percentages, from 54% to 56%, suggests that these factors all contribute 
+        similarly to academic success, but Mentoring appears to be a positive influence on grades, with
+         the percentage of “Yes” responses decreasing as grades get lower. Interestingly, tutoring peaks
+          among B students (55.2%), which may reflect their proactive efforts to improve to an A grade, 
+          while A students might need less tutoring and C students might utilize it less effectively.
         </p>
 
-        
+<h3>Figure 3: Distribution of Student Grades by School Type and Major</h3>        
 <div class="visualization" id="plotly-chart">
   <iframe src="sunburst.html" width="100%" height="500" frameborder="0"></iframe>
 </div>
@@ -66,16 +79,17 @@
     An interesting observation is the major nor the institution type affect the GPA much. Each section has mostly B's and similar number of A's and C's.
 </p>
 
-
+<h3>Figure 4: </h3>  
 <div class="visualization" id="d3-chart"></div>
 
 <p>
     Similar to the sunburst chart, a surprising find is how the level of extracurricular involvement does not seem to effect the grades of students much. 
     The majority of students in all levels of extracurricular involvement have B's with the amount of A's and C's being fairly close.
 </p>
-        
+
+<h3>Figure 5: Correlation Heatmap of Academic Factors</h3>
 <div class="visualization" id="heatmap-chart">
-  <img src="correlation.png" alt="Correlation Heatmap" width="100%">
+  <img src="correlation.png" alt="Correlation Heatmap" width="100%" >
 </div>
 <p>
     This correlation heatmap highlights that higher attendance and study hours are positively correlated with one another, while time wasted on social media has a mild negative correlation with academic-related factors.
@@ -84,17 +98,27 @@
 
 
         <h2>Findings</h2>
-        <p>From our visualizations, we found that most of the factors from our dataset didn't have any conclusive evidence of effecting grades. 
-            Factors like Major, involvement in electives, class size and more that people consider when thinking of effecting grades didn't have much correlation.
-            Of the 34 factors, we only found a handful of significant ones. (Study Hours, Family income, sleep patterns) The amount of time studying, family income and involvement, and the amount of sleep all significantly correlate with academic performance.
-            One flaw to consider in our data is how many of the categories in our data are reports from each student and thus the level of 8.
+        <p>From our visualizations, we found that study hours significantly correlate with academic performance. Students with higher parental involvement tend to perform better, while excessive extracurricular activities can have both positive and negative impacts depending on time management.
+            Our analysis found that no single factor overwhelmingly determines a students' grades; rather, 
+            academic performance is influenced by a combination of various factors. While factors like study hours, 
+            attendance, and mentoring showed positive correlations with higher grades, their individual impacts 
+            were relatively small. Additionally, factors like excessive screen time and social media use
+           had a slight negative effect, but not decisively so. Overall, student success appears to depend on a 
+           balanced mix of study habits, support systems, and time management rather than any one dominant factor. 
         </p>
 
         <h2>Future Work</h2>
-        <p>Further research can include a predictive model for student performance based on real-time input from teachers and students.</p>
+        <p>Further research can include a predictive model for student performance based on real-time input from teachers and students.
+            This model could leverage data from ongoing assessments, feedback, and participation in academic support activities to 
+            offer timely interventions. Additionally, it could incorporate machine learning algorithms to identify 
+            patterns and predict at-risk students, allowing for more personalized and effective support. Such
+             an approach could lead to proactive strategies that enhance academic success and student retention.
+        </p>
 
         <h2>Interactive Features</h2>
-        <p>Users can interact with the visualizations by filtering based on demographics, study habits, and extracurricular activities.</p>
+        <p>Users can interact with the visualizations by filtering based on grade level and hovering over bars to 
+            see more information about the data.
+        </p>
     </div>
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
