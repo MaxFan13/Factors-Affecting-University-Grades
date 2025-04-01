@@ -75,15 +75,13 @@
   <iframe src="sunburst.html" width="100%" height="500" frameborder="0"></iframe>
 </div>
 <p>
-    This is an interactive scatter plot showing the relation between GPA, Hours Studied, Major, and Class Participation. 
-    This scatter plot shows a general upward trend: more study hours tend to correlate with better grades. However, the correlation varies across majors, suggesting the need for tailored academic support by field of study.
+    We made an interactive sunburst plot showing the count of each grade of students from each major and whether they attend a public or private university. We wanted to see if going to a public or private university or if the major a student took affected their grade. It’s made using plotly and goes down the path of type of university to major to grade and colored by the grade. An interesting observation is that neither the major nor the institution type affect the GPA much. Each section has mostly B's and a similar number of A's and C's. Whether the number of A’s or C’s vary but there is no obvious definitive cause as to what causes one to have more than the other. This result goes against the belief that some majors are inherently harder than others and how private schools are generally harder than public schools. Since all majors have a similar distribution of grades, it can be assumed that each major is similar in difficulty as well and the perceived difference in difficulty may be attributed to the different ways each major challenges students. For the argument of private schools being more difficult than public schools, the results show that the grade distribution is the same for both. A few reasons for this may be because private schools may be more likely to inflate grades or that students that go to more difficult universities are smarter or work harder than those that attend less competitive colleges.
 </p>
-
-<h3>Figure 4: </h3>  
+<h3>Figure 4: Distribution of Grades Based on Sports Participation</h3>  
 <div class="visualization" id="d3-chart"></div>
 
 <p>
-    The grouped bar chart demonstrates how students with more involvement in extracurricular activities tend to earn higher grades. However, moderate activity often yields the best balance, while too little or none is associated with lower academic performance.
+    This is a grouped bar chart that shows the number of students in each extracurricular participation level separated  by grades. This was made with d3 Similar to the sunburst chart, a surprising find is how the level of sports involvement does not seem to affect the grades of students much. The majority of students in all levels of extracurricular involvement have B's with the amount of A's and C's being fairly close. However, proportionally, the more students participate in sports, the more likely they will have either an A or C. This implies, the more active someone is in sports, the more likely they will either perform better or worse than average. 
 </p>
 
 <h3>Figure 5: Correlation Heatmap of Academic Factors</h3>
@@ -111,7 +109,11 @@
             This model could leverage data from ongoing assessments, feedback, and participation in academic support activities to 
             offer timely interventions. Additionally, it could incorporate machine learning algorithms to identify 
             patterns and predict at-risk students, allowing for more personalized and effective support. Such
-             an approach could lead to proactive strategies that enhance academic success and student retention.
+             an approach could lead to proactive strategies that enhance academic success and student retention. 
+             Some of the flaws we could also address are the inconsistencies with the collected data and also how we address the missing data. 
+             Currently, we're not sure how the data was collected, but for certain categorical factors like parent involvement, self esteem, and stress levels, it can be hard to guage and classify each students amount. 
+            In addition, tons of data were missing so we decided to fill each in with the mean or median values depending if it was quantitative or categorical data. 
+            However, this could have potentially skewed our results since most of the categorical factors were only split into 3 levels. If we could adress this in the future, we could possibly gain much more accurate insights.
         </p>
 
         <h2>Interactive Features</h2>
@@ -127,17 +129,16 @@
             height = 400 - margin.top - margin.bottom;
 
         const svg = d3.select("#d3-chart").append("svg")
-            .attr("width", width + margin.left + margin.right + 100) // Extra space for legend
+            .attr("width", width + margin.left + margin.right + 100)
             .attr("height", height + margin.top + margin.bottom)
         .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
         d3.csv("activity_grades.csv").then(data => {
-            // Convert count to number
             data.forEach(d => d.count = +d.count);
 
             const x0 = d3.scaleBand()
-                .domain([...new Set(data.map(d => d.Sports_Participation))])
+                .domain(["High", "Medium", "Low"])
                 .range([0, width])
                 .paddingInner(0.2);
 
@@ -153,6 +154,15 @@
             const color = d3.scaleOrdinal()
                 .domain([...new Set(data.map(d => d.Grades))])
                 .range(d3.schemeSet2);
+
+            svg.append("text")
+                .attr("x", width / 2)
+                .attr("y", -10)
+                .attr("text-anchor", "middle")
+                .style("font-size", "18px")
+                .style("font-weight", "bold")
+                .text("Student Grades by Sports Participation Level");
+
 
             svg.append("g")
             .selectAll("g")
@@ -179,7 +189,7 @@
                 .attr("x", width / 2)
                 .attr("y", height + 40)
                 .attr("text-anchor", "middle")
-                .text("Extracurricular Activity Level");
+                .text("Sports Participation Level");
 
             svg.append("text")
                 .attr("x", -height / 2)
