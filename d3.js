@@ -8,11 +8,10 @@ const svg = d3.select("#d3-chart").append("svg")
   .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
-// Define your grade color mapping
 const gradeColors = {
-    A: "#7572FF",
-    B: "#E45142",
-    C: "#49C89B"
+    A: "#268100",
+    B: "#F8D70D",
+    C: "#F10015"
 };
 
 const color = d3.scaleOrdinal()
@@ -20,37 +19,30 @@ const color = d3.scaleOrdinal()
     .range([gradeColors.A, gradeColors.B, gradeColors.C]);
 
 d3.csv("activity_grades.csv").then(data => {
-    // Convert count values to numbers
     data.forEach(d => {
         d.count = +d.count;
     });
     
-    // Define an order for the Grades (if you want a specific stacking order)
     const gradeOrder = ["A", "B", "C"];
     
-    // Group the data by Sports_Participation and compute percentages and cumulative values for stacking
     const nestedData = Array.from(d3.group(data, d => d.Sports_Participation), ([key, values]) => {
         const total = d3.sum(values, d => d.count);
-        // Sort by the defined grade order to keep stacking consistent
         values.sort((a, b) => gradeOrder.indexOf(a.Grades) - gradeOrder.indexOf(b.Grades));
         let cumulative = 0;
         values.forEach(d => {
-            d.percentage = (d.count / total) * 100;  // Percentage of this grade within the group
-            d.cum0 = cumulative;                     // Starting cumulative percentage
+            d.percentage = (d.count / total) * 100;
+            d.cum0 = cumulative;
             cumulative += d.percentage;
-            d.cum1 = cumulative;                     // Ending cumulative percentage
+            d.cum1 = cumulative;
         });
         return { key: key, values: values };
     });
     
-    // Define an x-scale for the Sports_Participation groups.
-    // Adjust these domain values if your data uses different names.
     const x = d3.scaleBand()
         .domain(["High", "Medium", "Low"])
         .range([0, width])
         .padding(0.2);
 
-    // Define a y-scale for percentage (0% at the bottom, 100% at the top)
     const y = d3.scaleLinear()
         .domain([0, 100])
         .range([height, 0]);
@@ -63,15 +55,13 @@ d3.csv("activity_grades.csv").then(data => {
         .style("font-size", "18px")
         .style("font-weight", "bold")
         .text("Student Grades by Sports Participation Level (Stacked, %)");
-    
-    // Append one group per Sports_Participation level and position it horizontally
+
     const groups = svg.selectAll(".group")
         .data(nestedData)
         .join("g")
         .attr("class", "group")
         .attr("transform", d => `translate(${x(d.key)}, 0)`);
     
-    // Create stacked bar segments for each grade
     groups.selectAll("rect")
         .data(d => d.values)
         .join("rect")
@@ -83,7 +73,6 @@ d3.csv("activity_grades.csv").then(data => {
         .append("title")
         .text(d => `Grade: ${d.Grades}, Count: ${d.count}, Percentage: ${d.percentage.toFixed(1)}%`);
     
-    // Append percentage text in the center of each segment
     groups.selectAll("text")
         .data(d => d.values)
         .join("text")
@@ -95,23 +84,19 @@ d3.csv("activity_grades.csv").then(data => {
         .style("font-size", "12px")
         .text(d => d.percentage.toFixed(1) + "%");
     
-    // Add the y-axis with percentage tick format
     svg.append("g")
         .call(d3.axisLeft(y).tickFormat(d => d + "%"));
     
-    // Add the x-axis
     svg.append("g")
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(x));
     
-    // X-axis label
     svg.append("text")
         .attr("x", width / 2)
         .attr("y", height + 40)
         .attr("text-anchor", "middle")
         .text("Sports Participation Level");
     
-    // Y-axis label
     svg.append("text")
         .attr("x", -height / 2)
         .attr("y", -30)
@@ -119,7 +104,6 @@ d3.csv("activity_grades.csv").then(data => {
         .attr("text-anchor", "middle")
         .text("Percentage of Students");
     
-    // Legend for Grades
     const legend = svg.append("g")
         .attr("transform", `translate(${width + 20}, 0)`);
     
