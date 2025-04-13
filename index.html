@@ -98,15 +98,20 @@
     This is a stacked bar chart that shows the number of students in each extracurricular participation level separated by grades. This was made with d3. Similar to the sunburst chart, a surprising find is how the level of sports involvement does not seem to affect the grades of students much. The majority of students in all levels of extracurricular involvement have B's with the amount of A's and C's being fairly close. However, proportionally, the more students participate in sports, the more likely they will have either an A or C. This implies, the more active someone is in sports, the more likely they will either perform better or worse than average. 
 </p>
 
-<h3>Figure 6: Correlation Heatmap of Academic Factors</h3>
-<div class="visualization" id="heatmap-chart">
-  <img src="correlation.png" alt="Correlation Heatmap" width="100%" >
-</div>
-<p>
-    We created a correlation heatmap to investigate how various academic and lifestyle factors relate to GPA. This visualization includes variables such as attendance, study hours, class size, screen time, sleep patterns, and time spent on social media. Each square in the heatmap represents the correlation between a pair of variables, with values close to 1 or -1 indicating stronger relationships. Interestingly, GPA shows **almost no strong correlation** with any of the variables analyzed. For instance, the correlations between GPA and key factors like attendance, study hours, screen time, and even social media usage are all very close to zero. This suggests that no single academic or lifestyle factor in the dataset strongly predicts academic performance on its own. The overall takeaway is that GPA likely depends on a complex mix of variables, or perhaps on other unmeasured factors such as personal motivation, teaching quality, or mental health. While many of these factors are commonly believed to influence grades, our results emphasize that student success cannot be easily attributed to any one behavior or background characteristic.
-</p>
-
-
+<h3>Figure 6: Percentage of Students Participating in Academic Support Activities</h3>
+<div class="visualization" id="interactive_bar_chart">
+    <iframe src="fig6_box.html" width="100%" height="500" frameborder="0"></iframe>
+    </div>
+        <p>
+        This interactive bar chart shows the percentage of students who reported participating in various
+        academic support activities (mentoring, tutoring, educational resources, extracurricular 
+        activities), with functionality to sort by grade level and view precise percentages on hover. 
+        The narrow range of percentages, from 54% to 56%, suggests that these factors all contribute 
+        similarly to academic success, but Mentoring appears to be a positive influence on grades, with
+         the percentage of “Yes” responses decreasing as grades get lower. Interestingly, tutoring peaks
+          among B students (55.2%), which may reflect their proactive efforts to improve to an A grade, 
+          while A students might need less tutoring and C students might utilize it less effectively.
+        </p>
 
 
         <h2>Findings</h2>
